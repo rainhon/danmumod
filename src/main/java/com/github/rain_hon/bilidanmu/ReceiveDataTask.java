@@ -28,7 +28,7 @@ public class ReceiveDataTask implements Runnable {
                         String danmu = Pack.analyze(receive);
                         if(danmu != null){
                             handler.dispatch(danmu);
-                            //System.out.println(danmu);
+                            System.out.println(danmu);
                         }
                     }
                 }

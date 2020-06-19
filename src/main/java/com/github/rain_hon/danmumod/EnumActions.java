@@ -30,25 +30,25 @@ public enum EnumActions{
     LOOK_UP(new String[]{"向上看"}, ()->{
         ActionTaskHandler.getInstance().put(MOUSE_UP);
     }),
-    CHOOSE_1(new String[] {"物品栏1"}, ()->{
+    CHOOSE_1(new String[] {"1"}, ()->{
         ActionTaskHandler.getInstance().put(PRESS_1);
         ActionTaskHandler.scheduledExecutorService.schedule(()->{
             ActionTaskHandler.getInstance().put(RELEASE_1);
         }, 2000, TimeUnit.MILLISECONDS);
     }),
-    CHOOSE_2(new String[] {"物品栏2"}, ()->{
+    CHOOSE_2(new String[] {"2"}, ()->{
         ActionTaskHandler.getInstance().put(PRESS_2);
         ActionTaskHandler.scheduledExecutorService.schedule(()->{
             ActionTaskHandler.getInstance().put(RELEASE_2);
         }, 2000, TimeUnit.MILLISECONDS);
     }),
-    CHOOSE_3(new String[] {"物品栏3"}, ()->{
+    CHOOSE_3(new String[] {"3"}, ()->{
         ActionTaskHandler.getInstance().put(PRESS_3);
         ActionTaskHandler.scheduledExecutorService.schedule(()->{
             ActionTaskHandler.getInstance().put(RELEASE_3);
         }, 2000, TimeUnit.MILLISECONDS);
     }),
-    CHOOSE_4(new String[] {"物品栏4"}, ()->{
+    CHOOSE_4(new String[] {"4"}, ()->{
         ActionTaskHandler.getInstance().put(PRESS_4);
         ActionTaskHandler.scheduledExecutorService.schedule(()->{
             ActionTaskHandler.getInstance().put(RELEASE_4);

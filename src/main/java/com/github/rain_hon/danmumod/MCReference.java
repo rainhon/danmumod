@@ -8,4 +8,5 @@ public class MCReference {
     public static Long window = Minecraft.getInstance().getMainWindow().getHandle();
     public static KeyboardListener keyboardListener = Minecraft.getInstance().keyboardListener;
     public static MouseHelper mouseHelper = Minecraft.getInstance().mouseHelper;
+    public static Minecraft minecraft = Minecraft.getInstance();
 }

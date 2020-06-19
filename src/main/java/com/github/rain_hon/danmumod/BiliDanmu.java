@@ -26,10 +26,7 @@ public class BiliDanmu {
     private static final ActionTaskHandler actionTaskHandler = ActionTaskHandler.getInstance();
 
     public BiliDanmu() {
-        LogManager.getLogger().info("testttttt");
-
         FMLJavaModLoadingContext.get().getModEventBus().register(this);
-
     }
 
 
@@ -53,6 +50,8 @@ public class BiliDanmu {
                 danmuClient.shutdownService();
             }
         }
+
+        ActionTaskHandler.getInstance().dispatch(e.getMessage());
 
     }
 

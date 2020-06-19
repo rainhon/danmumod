@@ -52,4 +52,5 @@ public class KeyboardController {
         MCReference.keyboardListener
                 .onKeyEvent(MCReference.window, key, GLFW.glfwGetKeyScancode(key), GLFW_RELEASE, modifiers);
     }
+
 }
