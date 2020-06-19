@@ -6,72 +6,105 @@ import java.util.concurrent.TimeUnit;
 import static com.github.rain_hon.danmumod.EnumDecompositionTask.*;
 
 public enum EnumActions{
-    MOVE_FORWARD(new String[]{"前进", "向前"}, ()->{
+    MOVE_FORWARD(new String[]{"前进", "向前", "w", "W"}, ()->{
         ActionTaskHandler.getInstance().put(PRESS_W);
         ActionTaskHandler.scheduledExecutorService.schedule(()->{
             ActionTaskHandler.getInstance().put(RELEASE_W);
         }, 2000, TimeUnit.MILLISECONDS);
     }),
-    MOVE_BACK(new String[]{"后退", "向后"}, ()->{
+    MOVE_BACK(new String[]{"后退", "向后", "s", "S"}, ()->{
         ActionTaskHandler.getInstance().put(PRESS_S);
         ActionTaskHandler.scheduledExecutorService.schedule(()->{
             ActionTaskHandler.getInstance().put(RELEASE_S);
         }, 2000, TimeUnit.MILLISECONDS);
     }),
-    LOOK_LEFT(new String[]{"向左看"}, ()->{
+    MOVE_FORWARD_STILL(new String[]{"一直往前", "按住w","按住前进"}, ()->{
+        ActionTaskHandler.getInstance().put(PRESS_S);
+    }),
+    MOVE_FORWARD_STOP(new String[]{"停下", "松开w","松开前进"}, ()->{
+        ActionTaskHandler.getInstance().put(RELEASE_W);
+    }),
+
+    LOOK_LEFT(new String[]{"向左看", "向左", "l", "LEFT", "left"}, ()->{
         ActionTaskHandler.getInstance().put(MOUSE_LEFT);
     }),
-    LOOK_RIGHT(new String[]{"向右看"}, ()->{
+    LOOK_RIGHT(new String[]{"向右看", "向右", "r", "RIGHT", "right"}, ()->{
         ActionTaskHandler.getInstance().put(MOUSE_RIGHT);
     }),
-    LOOK_DOWN(new String[]{"向下看"}, ()->{
+    LOOK_DOWN(new String[]{"向下看", "向下", "d", "DOWN", "down"}, ()->{
         ActionTaskHandler.getInstance().put(MOUSE_DOWN);
     }),
-    LOOK_UP(new String[]{"向上看"}, ()->{
+    LOOK_UP(new String[]{"向上看", "向上", "u", "UP", "UP"}, ()->{
         ActionTaskHandler.getInstance().put(MOUSE_UP);
     }),
     CHOOSE_1(new String[] {"1"}, ()->{
         ActionTaskHandler.getInstance().put(PRESS_1);
         ActionTaskHandler.scheduledExecutorService.schedule(()->{
             ActionTaskHandler.getInstance().put(RELEASE_1);
-        }, 2000, TimeUnit.MILLISECONDS);
+        }, 1000, TimeUnit.MILLISECONDS);
     }),
     CHOOSE_2(new String[] {"2"}, ()->{
         ActionTaskHandler.getInstance().put(PRESS_2);
         ActionTaskHandler.scheduledExecutorService.schedule(()->{
             ActionTaskHandler.getInstance().put(RELEASE_2);
-        }, 2000, TimeUnit.MILLISECONDS);
+        }, 1000, TimeUnit.MILLISECONDS);
     }),
     CHOOSE_3(new String[] {"3"}, ()->{
         ActionTaskHandler.getInstance().put(PRESS_3);
         ActionTaskHandler.scheduledExecutorService.schedule(()->{
             ActionTaskHandler.getInstance().put(RELEASE_3);
-        }, 2000, TimeUnit.MILLISECONDS);
+        }, 1000, TimeUnit.MILLISECONDS);
     }),
     CHOOSE_4(new String[] {"4"}, ()->{
         ActionTaskHandler.getInstance().put(PRESS_4);
         ActionTaskHandler.scheduledExecutorService.schedule(()->{
             ActionTaskHandler.getInstance().put(RELEASE_4);
-        }, 2000, TimeUnit.MILLISECONDS);
+        }, 1000, TimeUnit.MILLISECONDS);
     }),
-    CTRL_PRESS(new String[]{"按住ctl"},()->{
+    CTRL_PRESS(new String[]{"按住ctrl", "ctrl"},()->{
         ActionTaskHandler.getInstance().put(PRESS_CTRL);
     }),
-    SHIFT_PRESS(new String[]{"按住shift"},()->{
+    SHIFT_PRESS(new String[]{"按住shift", "shift"},()->{
         ActionTaskHandler.getInstance().put(PRESS_SHIFT);
     }),
-    CTRL_RELEASE(new String[]{"松ctl"},()->{
+    CTRL_RELEASE(new String[]{"松ctrl", "松开ctrl"},()->{
         ActionTaskHandler.getInstance().put(RELEASE_CTRL);
     }),
-    SHIFT_RELEASE(new String[]{"松shift"}, ()->{
+    SHIFT_RELEASE(new String[]{"松shift", "松开shift"}, ()->{
         ActionTaskHandler.getInstance().put(RELEASE_SHIFT);
+    }),
+    SPACE_CLICK(new String[]{"空格","跳","跳跃"}, ()->{
+        ActionTaskHandler.getInstance().put(PRESS_SPACE);
+        ActionTaskHandler.scheduledExecutorService.schedule(()->{
+            ActionTaskHandler.getInstance().put(RELEASE_SPACE);
+        },1000, TimeUnit.MILLISECONDS);
     }),
     SPACE_PRESS(new String[]{"按住空格"}, ()->{
         ActionTaskHandler.getInstance().put(PRESS_SPACE);
     }),
     SPACE_RELEASE(new String[]{"松开空格"}, ()->{
         ActionTaskHandler.getInstance().put(RELEASE_SPACE);
-    });
+    }),
+    MOUSE_LEFT_PRESS(new String[]{"按住左键", "lp", "LP"}, ()->{
+        ActionTaskHandler.getInstance().put(MOUSE_LEFT_BUTTON_PRESS);
+    }),
+    MOUSE_LEFT_RELEASE(new String[]{"松开左键", "rl", "RL"}, ()->{
+        ActionTaskHandler.getInstance().put(MOUSE_LEFT_BUTTON_RELEASE);
+    }),
+
+    MOUSE_LEFT_CLICK(new String[]{"左击", "lc", "LC"}, ()->{
+        ActionTaskHandler.getInstance().put(MOUSE_LEFT_BUTTON_PRESS);
+        ActionTaskHandler.scheduledExecutorService.schedule(()->{
+            ActionTaskHandler.getInstance().put(MOUSE_LEFT_BUTTON_RELEASE);
+        }, 1000, TimeUnit.MILLISECONDS);
+    }),
+    MOUSE_RIGHT_CLICK(new String[]{"右击", "rc", "RC"}, ()->{
+        ActionTaskHandler.getInstance().put(MOUSE_LEFT_BUTTON_PRESS);
+        ActionTaskHandler.scheduledExecutorService.schedule(()->{
+            ActionTaskHandler.getInstance().put(MOUSE_RIGHT_BUTTON_RELEASE);
+        }, 1000, TimeUnit.MILLISECONDS);
+    }),
+    ;
 
     String[] alias;
     IActionDecomposition taskDecomposition;

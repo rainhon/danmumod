@@ -53,9 +53,11 @@ public enum EnumDecompositionTask {
     }),
     PRESS_CTRL(()->{
         KeyboardController.getInstance().pressModifiers(GLFW_MOD_CONTROL);
+        KeyboardController.getInstance().pressKey(GLFW_KEY_LEFT_CONTROL);
     }),
     RELEASE_CTRL(()->{
         KeyboardController.getInstance().releaseModifiers(GLFW_MOD_CONTROL);
+        KeyboardController.getInstance().releaseKey(GLFW_KEY_LEFT_CONTROL);
     }),
     PRESS_SHIFT(()->{
         KeyboardController.getInstance().pressModifiers(GLFW_MOD_SHIFT);
@@ -67,15 +69,21 @@ public enum EnumDecompositionTask {
     }),
     PRESS_SPACE(()->KeyboardController.getInstance().pressKey(GLFW_KEY_SPACE)),
     RELEASE_SPACE(()->KeyboardController.getInstance().releaseKey(GLFW_KEY_SPACE)),
+
+
     MOUSE_LEFT(()->MouseController.getInstance().mouseLeft().executeMove()),
     MOUSE_RIGHT(()->MouseController.getInstance().mouseRight().executeMove()),
     MOUSE_UP(()->MouseController.getInstance().mouseUp().executeMove()),
     MOUSE_DOWN(()->MouseController.getInstance().mouseDown().executeMove()),
-    MOUSE_LEFT_BUTTON_PRESS(()->MouseController.getInstance().executeButton(GLFW_MOUSE_BUTTON_1, GLFW_PRESS)),
-    MOUSE_LEFT_BUTTON_RELEASE(()->MouseController.getInstance().executeButton(GLFW_MOUSE_BUTTON_1, GLFW_RELEASE)),
-    MOUSE_RIGHT_BUTTON_PRESS(()->MouseController.getInstance().executeButton(GLFW_MOUSE_BUTTON_2, GLFW_PRESS)),
-    MOUSE_RIGHT_BUTTON_RELEASE(()->MouseController.getInstance().executeButton(GLFW_MOUSE_BUTTON_2, GLFW_RELEASE)),
+
+
+    MOUSE_LEFT_BUTTON_PRESS(()->MouseController.getInstance().executeButton(GLFW_MOUSE_BUTTON_LEFT, GLFW_PRESS)),
+    MOUSE_LEFT_BUTTON_RELEASE(()->MouseController.getInstance().executeButton(GLFW_MOUSE_BUTTON_LEFT, GLFW_RELEASE)),
+    MOUSE_RIGHT_BUTTON_PRESS(()->MouseController.getInstance().executeButton(GLFW_MOUSE_BUTTON_RIGHT, GLFW_PRESS)),
+    MOUSE_RIGHT_BUTTON_RELEASE(()->MouseController.getInstance().executeButton(GLFW_MOUSE_BUTTON_RIGHT, GLFW_RELEASE)),
+
     ;
+
     IGameTask gameTask;
 
     EnumDecompositionTask(IGameTask gameTask){
