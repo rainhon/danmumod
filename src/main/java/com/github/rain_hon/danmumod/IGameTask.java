@@ -1,6 +1,6 @@
 package com.github.rain_hon.danmumod;
 
 @FunctionalInterface
-public interface IKeyBoardTask {
+public interface IGameTask {
     void run();
 }

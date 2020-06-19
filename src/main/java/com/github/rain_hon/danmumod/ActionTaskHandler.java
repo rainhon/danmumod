@@ -1,10 +1,19 @@
 package com.github.rain_hon.danmumod;
 
 import java.util.ArrayList;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 public class ActionTaskHandler {
 
     private static ActionTaskHandler instance = null;
+
+    /**
+     * 用以执行延迟任务的线程服务
+     */
+    public static ScheduledExecutorService scheduledExecutorService
+            = Executors.newSingleThreadScheduledExecutor();
+
     KeyboardController keyboardController = KeyboardController.getInstance();
     ArrayList<EnumDecompositionTask> task_list = new ArrayList<>();
 
@@ -38,11 +47,4 @@ public class ActionTaskHandler {
         return !task_list.isEmpty();
     }
 
-    public void pressKey(int key){
-
-    }
-
-    public void releaseKey(int key){
-
-    }
 }

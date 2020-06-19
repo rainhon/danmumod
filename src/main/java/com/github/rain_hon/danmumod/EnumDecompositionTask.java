@@ -59,22 +59,35 @@ public enum EnumDecompositionTask {
     }),
     PRESS_SHIFT(()->{
         KeyboardController.getInstance().pressModifiers(GLFW_MOD_SHIFT);
+        KeyboardController.getInstance().pressKey(GLFW_KEY_LEFT_SHIFT);
     }),
     RELEASE_SHIFT(()->{
         KeyboardController.getInstance().releaseModifiers(GLFW_MOD_SHIFT);
+        KeyboardController.getInstance().releaseKey(GLFW_KEY_LEFT_SHIFT);
     }),
     PRESS_SPACE(()->{
         KeyboardController.getInstance().pressKey(GLFW_KEY_SPACE);
     }),
     RELEASE_SPACE(()->{
         KeyboardController.getInstance().releaseKey(GLFW_KEY_SPACE);
-    });
+    }),
+    MOUSE_LEFT(()->{
+        MouseController.getInstance().mouseLeft().executeMove();
+    }),
+    MOUSE_RIGHT(()->{
+        MouseController.getInstance().mouseRight().executeMove();
+    }),
+    MOUSE_UP(()->{
+        MouseController.getInstance().mouseUp().executeMove();
+    }),
+    MOUSE_DOWN(()->{
+        MouseController.getInstance().mouseDown().executeMove();
+    }),
+    ;
+    IGameTask gameTask;
 
-
-    IKeyBoardTask keyBoardTask;
-
-    EnumDecompositionTask(IKeyBoardTask keyBoardTask){
-        this.keyBoardTask = keyBoardTask;
+    EnumDecompositionTask(IGameTask gameTask){
+        this.gameTask = gameTask;
     }
 
 }

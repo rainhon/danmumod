@@ -1,7 +1,6 @@
 package com.github.rain_hon.danmumod;
 
 import java.util.Arrays;
-import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 import static com.github.rain_hon.danmumod.EnumDecompositionTask.*;
@@ -9,49 +8,49 @@ import static com.github.rain_hon.danmumod.EnumDecompositionTask.*;
 public enum EnumActions{
     MOVE_FORWARD(new String[]{"前进", "向前"}, ()->{
         ActionTaskHandler.getInstance().put(PRESS_W);
-        Executors.newSingleThreadScheduledExecutor().schedule(()->{
+        ActionTaskHandler.scheduledExecutorService.schedule(()->{
             ActionTaskHandler.getInstance().put(RELEASE_W);
         }, 2000, TimeUnit.MILLISECONDS);
     }),
     MOVE_BACK(new String[]{"后退", "向后"}, ()->{
         ActionTaskHandler.getInstance().put(PRESS_S);
-        Executors.newSingleThreadScheduledExecutor().schedule(()->{
+        ActionTaskHandler.scheduledExecutorService.schedule(()->{
             ActionTaskHandler.getInstance().put(RELEASE_S);
         }, 2000, TimeUnit.MILLISECONDS);
     }),
-    MOVE_RIGHT(new String[]{"向左"}, ()->{
-        ActionTaskHandler.getInstance().put(PRESS_A);
-        Executors.newSingleThreadScheduledExecutor().schedule(()->{
-            ActionTaskHandler.getInstance().put(RELEASE_A);
-        }, 2000, TimeUnit.MILLISECONDS);
+    LOOK_LEFT(new String[]{"向左看"}, ()->{
+        ActionTaskHandler.getInstance().put(MOUSE_LEFT);
     }),
-    MOVE_LEFT(new String[]{"向右"}, ()->{
-        ActionTaskHandler.getInstance().put(PRESS_D);
-        Executors.newSingleThreadScheduledExecutor().schedule(()->{
-            ActionTaskHandler.getInstance().put(RELEASE_D);
-        }, 2000, TimeUnit.MILLISECONDS);
+    LOOK_RIGHT(new String[]{"向右看"}, ()->{
+        ActionTaskHandler.getInstance().put(MOUSE_RIGHT);
+    }),
+    LOOK_DOWN(new String[]{"向下看"}, ()->{
+        ActionTaskHandler.getInstance().put(MOUSE_DOWN);
+    }),
+    LOOK_UP(new String[]{"向上看"}, ()->{
+        ActionTaskHandler.getInstance().put(MOUSE_UP);
     }),
     CHOOSE_1(new String[] {"物品栏1"}, ()->{
         ActionTaskHandler.getInstance().put(PRESS_1);
-        Executors.newSingleThreadScheduledExecutor().schedule(()->{
+        ActionTaskHandler.scheduledExecutorService.schedule(()->{
             ActionTaskHandler.getInstance().put(RELEASE_1);
         }, 2000, TimeUnit.MILLISECONDS);
     }),
     CHOOSE_2(new String[] {"物品栏2"}, ()->{
         ActionTaskHandler.getInstance().put(PRESS_2);
-        Executors.newSingleThreadScheduledExecutor().schedule(()->{
+        ActionTaskHandler.scheduledExecutorService.schedule(()->{
             ActionTaskHandler.getInstance().put(RELEASE_2);
         }, 2000, TimeUnit.MILLISECONDS);
     }),
     CHOOSE_3(new String[] {"物品栏3"}, ()->{
         ActionTaskHandler.getInstance().put(PRESS_3);
-        Executors.newSingleThreadScheduledExecutor().schedule(()->{
+        ActionTaskHandler.scheduledExecutorService.schedule(()->{
             ActionTaskHandler.getInstance().put(RELEASE_3);
         }, 2000, TimeUnit.MILLISECONDS);
     }),
     CHOOSE_4(new String[] {"物品栏4"}, ()->{
         ActionTaskHandler.getInstance().put(PRESS_4);
-        Executors.newSingleThreadScheduledExecutor().schedule(()->{
+        ActionTaskHandler.scheduledExecutorService.schedule(()->{
             ActionTaskHandler.getInstance().put(RELEASE_4);
         }, 2000, TimeUnit.MILLISECONDS);
     }),

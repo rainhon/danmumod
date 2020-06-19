@@ -61,7 +61,7 @@ public class BiliDanmu {
         if(actionTaskHandler.hasTask()){
             ArrayList<EnumDecompositionTask> tasks = actionTaskHandler.getTaskList();
             for(EnumDecompositionTask task : tasks){
-                task.keyBoardTask.run();
+                task.gameTask.run();
             }
         }
     }
