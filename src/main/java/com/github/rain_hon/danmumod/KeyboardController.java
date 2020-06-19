@@ -1,30 +1,34 @@
 package com.github.rain_hon.danmumod;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 import static org.lwjgl.glfw.GLFW.*;
 import org.lwjgl.glfw.GLFW;
 
 public class KeyboardController {
 
+    private KeyboardController(){}
 
-//    static ExecutorService service = Executors.newCachedThreadPool();
+    private static KeyboardController instance = null;
+
+    public static KeyboardController getInstance(){
+        if(instance == null){
+            instance = new KeyboardController();
+        }
+        return instance;
+    }
+
     static int modifiers = 0;
-//    int repeat = 1;
     int key;
+    int action;
 
     public KeyboardController setKey(int key){
         this.key = key;
         return this;
     }
 
-//    public KeyboardController setRepeat(int repeat){
-//        if(key > 0 && key < 10){
-//            this.repeat = delay;
-//        }
-//        return this;
-//    }
+    public KeyboardController setAction(int action){
+        this.action = action;
+        return this;
+    }
 
     public void pressModifiers(int mod){
         modifiers = modifiers & mod;
@@ -36,8 +40,16 @@ public class KeyboardController {
 
     public void execute(){
         MCReference.keyboardListener
-                .onKeyEvent(MCReference.window, this.key, GLFW.glfwGetKeyScancode(this.key), GLFW_PRESS, modifiers);
-//        MCReference.keyboardListener
-//                .onKeyEvent(MCReference.window, this.key, GLFW.glfwGetKeyScancode(this.key), GLFW_RELEASE, modifiers);
+                .onKeyEvent(MCReference.window, this.key, GLFW.glfwGetKeyScancode(this.key), this.action, modifiers);
+    }
+
+    public void pressKey(int key){
+        MCReference.keyboardListener
+                .onKeyEvent(MCReference.window, key, GLFW.glfwGetKeyScancode(key), GLFW_PRESS, modifiers);
+    }
+
+    public void releaseKey(int key){
+        MCReference.keyboardListener
+                .onKeyEvent(MCReference.window, key, GLFW.glfwGetKeyScancode(key), GLFW_RELEASE, modifiers);
     }
 }
