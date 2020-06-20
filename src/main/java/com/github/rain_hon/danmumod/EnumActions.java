@@ -20,7 +20,7 @@ public enum EnumActions{
         }, 2000, TimeUnit.MILLISECONDS);
     }),
     MOVE_FORWARD_STILL(new String[]{"一直往前", "按住w","按住前进"}, ()->{
-        ActionTaskHandler.getInstance().put(PRESS_S);
+        ActionTaskHandler.getInstance().put(PRESS_W);
     }),
     MOVE_FORWARD_STOP(new String[]{"停下", "松开w","松开前进"}, ()->{
         ActionTaskHandler.getInstance().put(RELEASE_W);
@@ -68,7 +68,9 @@ public enum EnumActions{
     }),
     SPACE_CLICK(new String[]{"空格","跳","跳跃"}, ()->{
         ActionTaskHandler.getInstance().put(PRESS_SPACE);
-        ActionTaskHandler.getInstance().put(RELEASE_SPACE);
+        Executors.newSingleThreadScheduledExecutor().schedule(()->{
+            ActionTaskHandler.getInstance().put(RELEASE_SPACE);
+        }, 2000, TimeUnit.MILLISECONDS);
     }),
     SPACE_PRESS(new String[]{"按住空格"}, ()->{
         ActionTaskHandler.getInstance().put(PRESS_SPACE);
