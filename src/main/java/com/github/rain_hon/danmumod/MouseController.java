@@ -2,6 +2,7 @@ package com.github.rain_hon.danmumod;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.MouseHelper;
+import net.minecraft.client.util.InputMappings;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -28,23 +29,20 @@ public class MouseController {
 
     Field ignoreFirstMove;
 
-    /**
-     * 鼠标每次移动距离  X
-     */
-    int moveVelocityX;
+    Field leftClickCounter;
 
-    /**
-     * 鼠标每次移动距离 Y
-     */
-    int moveVelocityY;
+//    Field mouseX;
+//
+//    Field mouseY;
 
     double windowWidth;
     double windowHeight;
 
+
+
     private MouseController(){
         try{
             //反射获取mousehelper的cursorPosCallback
-            //调用私有方法必须用getDeclaredMethod
             mouseButtonCallback = mouseHelper.getClass()
                     .getDeclaredMethod("mouseButtonCallback", long.class, int.class, int.class, int.class);
             mouseButtonCallback.setAccessible(true);
@@ -59,6 +57,18 @@ public class MouseController {
             ignoreFirstMove = mouseHelper.getClass()
                     .getDeclaredField("ignoreFirstMove");
             ignoreFirstMove.setAccessible(true);
+
+            leftClickCounter = MCReference.minecraft.getClass()
+                    .getDeclaredField("leftClickCounter");
+            leftClickCounter.setAccessible(true);
+
+//            mouseX = mouseHelper.getClass()
+//                    .getDeclaredField("mouseX");
+//            mouseX.setAccessible(true);
+//
+//            mouseY = mouseHelper.getClass()
+//                    .getDeclaredField("mouseY");
+//            mouseY.setAccessible(true);
 
             windowWidth = MCReference.minecraft.getMainWindow().getWidth();
             windowHeight = MCReference.minecraft.getMainWindow().getHeight();
@@ -121,9 +131,14 @@ public class MouseController {
         }
     }
 
-    public void executeButton(int action, int button){
+    public void executeButton(int button, int action){
         try{
-            mouseButtonCallback.invoke(mouseHelper, MCReference.window, button, action, KeyboardController.modifiers);
+            MCReference.minecraft.setGameFocused(true);
+
+            mouseHelper.grabMouse();
+            ignoreFirstMove.set(mouseHelper, false);
+            leftClickCounter.set(MCReference.minecraft, 0);
+            mouseButtonCallback.invoke(mouseHelper, MCReference.window, button, action, 0);
         }catch (InvocationTargetException|IllegalAccessException e){
             throw new RuntimeException(e);
         }

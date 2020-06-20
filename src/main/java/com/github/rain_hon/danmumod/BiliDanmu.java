@@ -25,6 +25,8 @@ public class BiliDanmu {
 
     private static final ActionTaskHandler actionTaskHandler = ActionTaskHandler.getInstance();
 
+    private static EnumDecompositionTask task = null;
+
     public BiliDanmu() {
         FMLJavaModLoadingContext.get().getModEventBus().register(this);
     }
@@ -57,11 +59,9 @@ public class BiliDanmu {
 
     @SubscribeEvent
     public static void onTick(TickEvent event){
-        if(actionTaskHandler.hasTask()){
-            ArrayList<EnumDecompositionTask> tasks = actionTaskHandler.getTaskList();
-            for(EnumDecompositionTask task : tasks){
-                task.gameTask.run();
-            }
+        task = actionTaskHandler.getTask();
+        if(task != null){
+            task.gameTask.run();
         }
     }
 }

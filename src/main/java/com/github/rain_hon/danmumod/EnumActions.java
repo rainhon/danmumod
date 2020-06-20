@@ -1,6 +1,7 @@
 package com.github.rain_hon.danmumod;
 
 import java.util.Arrays;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 import static com.github.rain_hon.danmumod.EnumDecompositionTask.*;
@@ -8,13 +9,13 @@ import static com.github.rain_hon.danmumod.EnumDecompositionTask.*;
 public enum EnumActions{
     MOVE_FORWARD(new String[]{"前进", "向前", "w", "W"}, ()->{
         ActionTaskHandler.getInstance().put(PRESS_W);
-        ActionTaskHandler.scheduledExecutorService.schedule(()->{
+        Executors.newSingleThreadScheduledExecutor().schedule(()->{
             ActionTaskHandler.getInstance().put(RELEASE_W);
         }, 2000, TimeUnit.MILLISECONDS);
     }),
     MOVE_BACK(new String[]{"后退", "向后", "s", "S"}, ()->{
         ActionTaskHandler.getInstance().put(PRESS_S);
-        ActionTaskHandler.scheduledExecutorService.schedule(()->{
+        Executors.newSingleThreadScheduledExecutor().schedule(()->{
             ActionTaskHandler.getInstance().put(RELEASE_S);
         }, 2000, TimeUnit.MILLISECONDS);
     }),
@@ -39,27 +40,19 @@ public enum EnumActions{
     }),
     CHOOSE_1(new String[] {"1"}, ()->{
         ActionTaskHandler.getInstance().put(PRESS_1);
-        ActionTaskHandler.scheduledExecutorService.schedule(()->{
-            ActionTaskHandler.getInstance().put(RELEASE_1);
-        }, 1000, TimeUnit.MILLISECONDS);
+        ActionTaskHandler.getInstance().put(RELEASE_1);
     }),
     CHOOSE_2(new String[] {"2"}, ()->{
         ActionTaskHandler.getInstance().put(PRESS_2);
-        ActionTaskHandler.scheduledExecutorService.schedule(()->{
-            ActionTaskHandler.getInstance().put(RELEASE_2);
-        }, 1000, TimeUnit.MILLISECONDS);
+        ActionTaskHandler.getInstance().put(RELEASE_2);
     }),
     CHOOSE_3(new String[] {"3"}, ()->{
         ActionTaskHandler.getInstance().put(PRESS_3);
-        ActionTaskHandler.scheduledExecutorService.schedule(()->{
-            ActionTaskHandler.getInstance().put(RELEASE_3);
-        }, 1000, TimeUnit.MILLISECONDS);
+        ActionTaskHandler.getInstance().put(RELEASE_3);
     }),
     CHOOSE_4(new String[] {"4"}, ()->{
         ActionTaskHandler.getInstance().put(PRESS_4);
-        ActionTaskHandler.scheduledExecutorService.schedule(()->{
-            ActionTaskHandler.getInstance().put(RELEASE_4);
-        }, 1000, TimeUnit.MILLISECONDS);
+        ActionTaskHandler.getInstance().put(RELEASE_4);
     }),
     CTRL_PRESS(new String[]{"按住ctrl", "ctrl"},()->{
         ActionTaskHandler.getInstance().put(PRESS_CTRL);
@@ -75,9 +68,7 @@ public enum EnumActions{
     }),
     SPACE_CLICK(new String[]{"空格","跳","跳跃"}, ()->{
         ActionTaskHandler.getInstance().put(PRESS_SPACE);
-        ActionTaskHandler.scheduledExecutorService.schedule(()->{
-            ActionTaskHandler.getInstance().put(RELEASE_SPACE);
-        },1000, TimeUnit.MILLISECONDS);
+        ActionTaskHandler.getInstance().put(RELEASE_SPACE);
     }),
     SPACE_PRESS(new String[]{"按住空格"}, ()->{
         ActionTaskHandler.getInstance().put(PRESS_SPACE);
@@ -88,21 +79,17 @@ public enum EnumActions{
     MOUSE_LEFT_PRESS(new String[]{"按住左键", "lp", "LP"}, ()->{
         ActionTaskHandler.getInstance().put(MOUSE_LEFT_BUTTON_PRESS);
     }),
-    MOUSE_LEFT_RELEASE(new String[]{"松开左键", "rl", "RL"}, ()->{
+    MOUSE_LEFT_RELEASE(new String[]{"松开左键", "lr", "lR"}, ()->{
         ActionTaskHandler.getInstance().put(MOUSE_LEFT_BUTTON_RELEASE);
     }),
 
     MOUSE_LEFT_CLICK(new String[]{"左击", "lc", "LC"}, ()->{
         ActionTaskHandler.getInstance().put(MOUSE_LEFT_BUTTON_PRESS);
-        ActionTaskHandler.scheduledExecutorService.schedule(()->{
-            ActionTaskHandler.getInstance().put(MOUSE_LEFT_BUTTON_RELEASE);
-        }, 1000, TimeUnit.MILLISECONDS);
+        ActionTaskHandler.getInstance().put(MOUSE_LEFT_BUTTON_RELEASE);
     }),
     MOUSE_RIGHT_CLICK(new String[]{"右击", "rc", "RC"}, ()->{
-        ActionTaskHandler.getInstance().put(MOUSE_LEFT_BUTTON_PRESS);
-        ActionTaskHandler.scheduledExecutorService.schedule(()->{
-            ActionTaskHandler.getInstance().put(MOUSE_RIGHT_BUTTON_RELEASE);
-        }, 1000, TimeUnit.MILLISECONDS);
+        ActionTaskHandler.getInstance().put(MOUSE_RIGHT_BUTTON_PRESS);
+        ActionTaskHandler.getInstance().put(MOUSE_RIGHT_BUTTON_RELEASE);
     }),
     ;
 

@@ -1,21 +1,19 @@
 package com.github.rain_hon.danmumod;
 
-import java.util.ArrayList;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class ActionTaskHandler {
 
     private static ActionTaskHandler instance = null;
 
-    /**
-     * 用以执行延迟任务的线程服务
-     */
-    public static ScheduledExecutorService scheduledExecutorService
-            = Executors.newSingleThreadScheduledExecutor();
+//    /**
+//     * 用以执行延迟任务的线程服务
+//     */
+//    public static ScheduledExecutorService scheduledExecutorService
+//            = Executors.newSingleThreadScheduledExecutor();
 
-    KeyboardController keyboardController = KeyboardController.getInstance();
-    ArrayList<EnumDecompositionTask> task_list = new ArrayList<>();
+//    KeyboardController keyboardController = KeyboardController.getInstance();
+    LinkedBlockingQueue<EnumDecompositionTask> task_list = new LinkedBlockingQueue<>(1024*10);
 
     private ActionTaskHandler(){
 
@@ -34,17 +32,15 @@ public class ActionTaskHandler {
     }
 
     public void put(EnumDecompositionTask decompositionTask){
-        task_list.add(decompositionTask);
+        task_list.offer(decompositionTask);
     }
 
-    public ArrayList<EnumDecompositionTask> getTaskList(){
-        ArrayList<EnumDecompositionTask> tasks = (ArrayList<EnumDecompositionTask>) task_list.clone();
-        task_list.clear();
-        return tasks;
+    public EnumDecompositionTask getTask(){
+        return task_list.poll();
     }
 
-    public boolean hasTask(){
-        return !task_list.isEmpty();
-    }
+//    public boolean hasTask(){
+//        return !task_list.isEmpty();
+//    }
 
 }
