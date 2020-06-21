@@ -1,53 +1,36 @@
--------------------------------------------
-Source installation information for modders
--------------------------------------------
-This code follows the Minecraft Forge installation methodology. It will apply
-some small patches to the vanilla MCP source code, giving you and it access 
-to some of the data and functions you need to build a successful mod.
+# 用b站直播弹幕控制游戏
 
-Note also that the patches are built against "unrenamed" MCP source code (aka
-srgnames) - this means that you will not be able to read them directly against
-normal code.
+## 使用方法
+1.开启游戏
+2.在聊天栏中输入 `roomid <房间id>`
+3.去对应的直播间刷弹幕吧
+4.也可以直接在聊天栏输入弹幕指令测试
 
-Source pack installation information:
+**注意:如果是大主播的话，房间号可能不是连接后的数字,需要进行查询一次
+https://api.live.bilibili.com/room/v1/Room/room_init?id=<url中的id>
 
-Standalone source installation
-==============================
+可用弹幕指令
 
-See the Forge Documentation online for more detailed instructions:
-http://mcforge.readthedocs.io/en/latest/gettingstarted/
-
-Step 1: Open your command-line and browse to the folder where you extracted the zip file.
-
-Step 2: You're left with a choice.
-If you prefer to use Eclipse:
-1. Run the following command: "gradlew genEclipseRuns" (./gradlew genEclipseRuns if you are on Mac/Linux)
-2. Open Eclipse, Import > Existing Gradle Project > Select Folder 
-   or run "gradlew eclipse" to generate the project.
-(Current Issue)
-4. Open Project > Run/Debug Settings > Edit runClient and runServer > Environment
-5. Edit MOD_CLASSES to show [modid]%%[Path]; 2 times rather then the generated 4.
-
-If you prefer to use IntelliJ:
-1. Open IDEA, and import project.
-2. Select your build.gradle file and have it import.
-3. Run the following command: "gradlew genIntellijRuns" (./gradlew genIntellijRuns if you are on Mac/Linux)
-4. Refresh the Gradle Project in IDEA if required.
-
-If at any point you are missing libraries in your IDE, or you've run into problems you can run "gradlew --refresh-dependencies" to refresh the local cache. "gradlew clean" to reset everything {this does not affect your code} and then start the processs again.
-
-Should it still not work, 
-Refer to #ForgeGradle on EsperNet for more information about the gradle environment.
-or the Forge Project Discord discord.gg/UvedJ9m
-
-Forge source installation
-=========================
-MinecraftForge ships with this code and installs it as part of the forge
-installation process, no further action is required on your part.
-
-LexManos' Install Video
-=======================
-https://www.youtube.com/watch?v=8VEdtQLuLO0&feature=youtu.be
-
-For more details update more often refer to the Forge Forums:
-http://www.minecraftforge.net/forum/index.php/topic,14048.0.html
+"前进", "向前", "w", "W"
+"后退", "向后", "s", "S"
+"一直往前", "按住w","按住前进"
+"停下", "松开w","松开前进"
+"向左看", "向左", "l", "LEFT", "left"
+"向右看", "向右", "r", "RIGHT", "right"
+"向下看", "向下", "d", "DOWN", "down"
+"向上看", "向上", "u", "UP", "UP"
+"按住ctrl", "ctrl"
+"按住shift", "shift"
+"松ctrl", "松开ctrl"
+"松shift", "松开shift"
+"空格","跳","跳跃"
+"按住空格"
+"松开空格"
+"1"
+"2"
+"3"
+"4"
+"按住左键", "lp", "LP"
+"松开左键", "lr", "LR"
+"左击", "lc", "LC"
+"右击", "rc", "RC"
