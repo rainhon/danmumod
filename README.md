@@ -10,7 +10,7 @@
 https://api.live.bilibili.com/room/v1/Room/room_init?id=<url中的id>
 
 可用弹幕指令
-
+````
 "前进", "向前", "w", "W"
 "后退", "向后", "s", "S"
 "一直往前", "按住w","按住前进"
@@ -34,3 +34,4 @@ https://api.live.bilibili.com/room/v1/Room/room_init?id=<url中的id>
 "松开左键", "lr", "LR"
 "左击", "lc", "LC"
 "右击", "rc", "RC"
+```
